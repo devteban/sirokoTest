@@ -23,3 +23,12 @@
 /public/assets/
 /assets/vendor/
 ###< symfony/asset-mapper ###
+
+###> custom ###
+.env
+.idea
+docker
+node_modules
+docker-compose.yml
+docker-compose.override.yml
+###< customr ###
