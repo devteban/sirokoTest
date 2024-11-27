@@ -91,114 +91,135 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            fetch('{{ path('api_cart_products') }}')
-                .then(response => response.json())
-                .then(data => {
-                    const cartProducts = data.products;
-                    const cartProductsContainer = document.getElementById('cart-products');
-                    const totalPriceContainer = document.getElementById('total-price-container');
-                    const checkoutButtonContainer = document.getElementById('checkout-button-container');
-                    const aggregatedProducts = {};
-                    let totalPrice = 0;
+            initCart();
 
-                    cartProducts.forEach(product => {
-                        if (aggregatedProducts[product.id]) {
-                            aggregatedProducts[product.id].quantity += product.quantity;
-                        } else {
-                            aggregatedProducts[product.id] = product;
-                        }
-                    });
-
-                    Object.values(aggregatedProducts).forEach(product => {
-                        const row = document.createElement('tr');
-                        row.setAttribute('data-id', product.id);
-                        row.innerHTML = `
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">${product.name}</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-neutral-400">${product.price} €</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
-                        <button class="decrement-quantity text-red-600 hover:text-red-900 dark:text-red-400 dark:hover:text-red-600" data-id="${product.id}">-</button>
-                        <span class="mx-2 text-black dark:text-white">${product.quantity}</span>
-                        <button class="increment-quantity text-green-600 hover:text-green-900 dark:text-green-400 dark:hover:text-green-600" data-id="${product.id}">+</button>
-                    </td>
-                `;
-                        cartProductsContainer.appendChild(row);
-                        totalPrice += product.price * product.quantity;
-                    });
-
-                    document.getElementById('total-price').textContent = totalPrice.toFixed(2);
-                    totalPriceContainer.style.display = totalPrice > 0 ? 'block' : 'none';
-                    checkoutButtonContainer.style.display = totalPrice > 0 ? 'block' : 'none';
-
-                    document.querySelectorAll('.increment-quantity').forEach(button => {
-                        button.addEventListener('click', function () {
-                            const productId = this.getAttribute('data-id');
-                            updateCartQuantity(productId, 1, this);
-                        });
-                    });
-
-                    document.querySelectorAll('.decrement-quantity').forEach(button => {
-                        button.addEventListener('click', function () {
-                            const productId = this.getAttribute('data-id');
-                            updateCartQuantity(productId, -1, this);
-                        });
-                    });
-                })
-                .catch(error => {
+            async function initCart() {
+                try {
+                    const data = await fetchCartProducts();
+                    renderCartProducts(data.products);
+                    updateTotalPrice(data.products);
+                    setupEventListeners();
+                } catch (error) {
                     console.error('Error:', error);
-                });
-
-            function updateCartQuantity(productId, change, button) {
-                fetch('{{ path('api_cart_update') }}', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        product_id: productId,
-                        change: change
-                    })
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.error) {
-                            alert(data.error);
-                        } else {
-                            const quantityElement = button.parentElement.querySelector('span');
-                            quantityElement.textContent = data.quantity;
-                            if (data.quantity === 0) {
-                                const row = document.querySelector(`tr[data-id="${productId}"]`);
-                                row.remove();
-                            }
-                            document.getElementById('total-price').textContent = data.total_price.toFixed(2);
-                            document.getElementById('total-price-container').style.display = data.total_price > 0 ? 'block' : 'none';
-                            document.getElementById('checkout-button-container').style.display = data.total_price > 0 ? 'block' : 'none';
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                    });
+                }
             }
 
-            document.getElementById('checkout-button').addEventListener('click', function () {
-                fetch('{{ path('api_cart_finalize') }}', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
+            async function fetchCartProducts() {
+                const response = await fetch('{{ path('api_cart_products') }}');
+                return response.json();
+            }
+
+            function renderCartProducts(cartProducts) {
+                const cartProductsContainer = document.getElementById('cart-products');
+                cartProductsContainer.innerHTML = ''; // Clear existing products
+                const aggregatedProducts = aggregateProducts(cartProducts);
+
+                Object.values(aggregatedProducts).forEach(product => {
+                    const row = createProductRow(product);
+                    cartProductsContainer.appendChild(row);
+                });
+            }
+
+            function aggregateProducts(cartProducts) {
+                return cartProducts.reduce((acc, product) => {
+                    if (acc[product.id]) {
+                        acc[product.id].quantity += product.quantity;
+                    } else {
+                        acc[product.id] = product;
                     }
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.error) {
-                            alert(data.error);
-                        } else {
-                            document.getElementById('hs-basic-modal').classList.remove('hidden');
-                            document.getElementById('hs-basic-modal').classList.add('hs-overlay-open');
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
+                    return acc;
+                }, {});
+            }
+
+            function createProductRow(product) {
+                const row = document.createElement('tr');
+                row.setAttribute('data-id', product.id);
+                row.innerHTML = `
+            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">${product.name}</td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-neutral-400">${product.price} €</td>
+            <td class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
+                <button class="decrement-quantity text-red-600 hover:text-red-900 dark:text-red-400 dark:hover:text-red-600" data-id="${product.id}">-</button>
+                <span class="mx-2 text-black dark:text-white">${product.quantity}</span>
+                <button class="increment-quantity text-green-600 hover:text-green-900 dark:text-green-400 dark:hover:text-green-600" data-id="${product.id}">+</button>
+            </td>
+        `;
+                return row;
+            }
+
+            function updateTotalPrice(cartProducts) {
+                const totalPrice = cartProducts.reduce((total, product) => total + product.price * product.quantity, 0);
+                document.getElementById('total-price').textContent = totalPrice.toFixed(2);
+                document.getElementById('total-price-container').style.display = totalPrice > 0 ? 'block' : 'none';
+                document.getElementById('checkout-button-container').style.display = totalPrice > 0 ? 'block' : 'none';
+            }
+
+            function setupEventListeners() {
+                document.querySelectorAll('.increment-quantity').forEach(button => {
+                    button.addEventListener('click', () => updateCartQuantity(button.getAttribute('data-id'), 1));
+                });
+
+                document.querySelectorAll('.decrement-quantity').forEach(button => {
+                    button.addEventListener('click', () => updateCartQuantity(button.getAttribute('data-id'), -1));
+                });
+
+                document.getElementById('checkout-button').addEventListener('click', finalizeCart);
+            }
+
+            async function updateCartQuantity(productId, change) {
+                try {
+                    const response = await fetch('{{ path('api_cart_update') }}', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ product_id: productId, change: change })
                     });
-            });
+                    const data = await response.json();
+                    handleCartUpdateResponse(data, productId);
+                } catch (error) {
+                    console.error('Error:', error);
+                }
+            }
+
+            function handleCartUpdateResponse(data, productId) {
+                if (data.error) {
+                    alert(data.error);
+                } else {
+                    const quantityElement = document.querySelector(`tr[data-id="${productId}"] .mx-2`);
+                    quantityElement.textContent = data.quantity;
+                    if (data.quantity === 0) {
+                        document.querySelector(`tr[data-id="${productId}"]`).remove();
+                    }
+                    document.getElementById('total-price').textContent = data.total_price.toFixed(2);
+                    document.getElementById('total-price-container').style.display = data.total_price > 0 ? 'block' : 'none';
+                    document.getElementById('checkout-button-container').style.display = data.total_price > 0 ? 'block' : 'none';
+                }
+            }
+
+            async function finalizeCart() {
+                try {
+                    const response = await fetch('{{ path('api_cart_finalize') }}', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        }
+                    });
+                    const data = await response.json();
+                    handleCartFinalizeResponse(data);
+                } catch (error) {
+                    console.error('Error:', error);
+                }
+            }
+
+            function handleCartFinalizeResponse(data) {
+                if (data.error) {
+                    alert(data.error);
+                } else {
+                    document.getElementById('hs-basic-modal').classList.remove('hidden');
+                    document.getElementById('hs-basic-modal').classList.add('hs-overlay-open');
+                    initCart(); // Re-list products after finalizing the cart
+                }
+            }
         });
     </script>
 {% endblock %}

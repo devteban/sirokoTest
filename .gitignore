@@ -31,4 +31,5 @@ docker
 node_modules
 docker-compose.yml
 docker-compose.override.yml
+/public/uploads/
 ###< customr ###
