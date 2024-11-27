@@ -49,6 +49,11 @@ Para ejecutar el proyecto localmente, sigue estos pasos:
    php bin/console doctrine:schema:update --force
    ```
 
+6. **Compilar TailwindCSS**
+   ```bash
+   php bin/console tailwind:build
+   ```
+
 ---
 
 ## 🌟 Notas
