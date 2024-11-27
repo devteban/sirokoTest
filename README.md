@@ -48,8 +48,9 @@ Para ejecutar el proyecto localmente, sigue estos pasos:
    ```bash
    php bin/console doctrine:schema:update --force
    ```
+   ```
 
-6. **Compilar TailwindCSS**
+6. **Buildear TailwindCSS**
    ```bash
    php bin/console tailwind:build
    ```
@@ -60,6 +61,16 @@ Para ejecutar el proyecto localmente, sigue estos pasos:
 
 - El enfoque principal de este proyecto ha sido garantizar que las funcionalidades esenciales sean **intuitivas** y **fáciles de usar**.
 - Se ha implementado un diseño limpio y funcional para mejorar la experiencia de usuario durante las pruebas.
+
+---
+
+## 📋 Notas Adicionales
+
+- **Encapsulación de funcionalidades del carrito**:  
+  Todas las funcionalidades relacionadas con el carrito de compras están completamente encapsuladas dentro del controlador `ApiController`. Esto garantiza una separación clara de responsabilidades y facilita su mantenimiento y escalabilidad.
+
+- **Uso de Tailwind CSS**:  
+  Para proporcionar una experiencia visual más agradable, he utilizado la librería de componentes de **Tailwind CSS**. Aunque el diseño no será evaluado, creo que una interfaz bien estructurada mejora la presentación y la usabilidad del proyecto.
 
 ---
 
