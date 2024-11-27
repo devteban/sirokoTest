@@ -9,7 +9,7 @@
 
 - **Login simple**: Acceso a las funcionalidades principales del proyecto.
 - **CRUD de Productos**:
-    - Visualización, creación, edición y eliminación de productos.
+    - Visualización, creación y eliminación de productos.
     - Carga inicial con varios productos predefinidos, con la posibilidad de añadir más a través del CRUD.
 - **Carrito de compras**: Implementado de acuerdo con los requisitos establecidos en el enunciado.
 
@@ -74,5 +74,4 @@ Para ejecutar el proyecto localmente, sigue estos pasos:
 
 ---
 
-Espero que disfrutes explorando esta prueba técnica tanto como yo disfruté desarrollándola.  
-¡Gracias por la oportunidad! 😊
+Cualquier duda o comentario, no dudéis en poneros en contacto conmigo, gracias por la oportunidad.
