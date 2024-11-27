@@ -7,7 +7,7 @@
 
 ## 🚀 Funcionalidades
 
-- **Login simple**: Acceso a las funcionalidades principales del proyecto.
+- **Login simple**: Acceso a las funcionalidades principales del proyecto. (Usuario: prueba@siroko.com, Contraseña: 123456)
 - **CRUD de Productos**:
     - Visualización, creación y eliminación de productos.
     - Carga inicial con varios productos predefinidos, con la posibilidad de añadir más a través del CRUD.
