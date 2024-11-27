@@ -64,6 +64,9 @@ Para ejecutar el proyecto localmente, sigue estos pasos:
 - **Uso de Tailwind CSS**:  
   Para proporcionar una experiencia visual más agradable, he utilizado la librería de componentes de **Tailwind CSS**. Aunque el diseño no será evaluado, creo que una interfaz bien estructurada mejora la presentación y la usabilidad del proyecto.
 
+- **Docker🐳**:  
+  Este proyecto utiliza una receta personalizada de Docker diseñada específicamente para las necesidades de un proyecto Symfony. La receta ha sido creada por mí, teniendo en cuenta las configuraciones óptimas para el desarrollo y la ejecución de la aplicación.
+
 ---
 
 Cualquier duda o comentario, no dudéis en poneros en contacto conmigo, gracias por la oportunidad.
