@@ -11,22 +11,23 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class MainController extends AbstractController
 {
+    #[Route('/', name: 'app_main')]
     public function index(ProductRepository $productRepository, EntityManagerInterface $entityManager): Response
     {
         $products = $productRepository->findProducts();
 
         if (empty($products)) {
             $product1 = new Product();
-            $product1->setName('Sport T-Shirt')
+            $product1->setName('Pantalones blancos')
                 ->setPrice(29.99)
-                ->setShortDescription('Comfortable sport t-shirt')
-                ->setImage('sport_tshirt.jpg');
+                ->setShortDescription('Cómodos pantalones deportivos')
+                ->setImage('crop_center.webp');
 
             $product2 = new Product();
-            $product2->setName('Running Shoes')
+            $product2->setName('Pantalones lila')
                 ->setPrice(79.99)
-                ->setShortDescription('High-quality running shoes')
-                ->setImage('running_shoes.jpg');
+                ->setShortDescription('Pantalones deportivos de alta calidad')
+                ->setImage('crop_center-_1_.webp');
 
             $entityManager->persist($product1);
             $entityManager->persist($product2);
