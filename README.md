@@ -48,7 +48,6 @@ Para ejecutar el proyecto localmente, sigue estos pasos:
    ```bash
    php bin/console doctrine:schema:update --force
    ```
-   ```
 
 6. **Buildear TailwindCSS**
    ```bash
