@@ -58,7 +58,7 @@ Para ejecutar el proyecto localmente, sigue estos pasos:
 
 ## 📋 Notas Adicionales
 
-- **Docker🐳**:  
+- **🐳 Docker**:  
   Este proyecto utiliza una receta personalizada de Docker diseñada específicamente para las necesidades de un proyecto Symfony. La receta ha sido creada por mí, teniendo en cuenta las configuraciones óptimas para el desarrollo y la ejecución de la aplicación.
 
 - **Encapsulación de funcionalidades del carrito**:  
