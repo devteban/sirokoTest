@@ -1,0 +1,500 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <body class="bg-gray-50 dark:bg-neutral-900">
+    <!-- ========== HEADER ========== -->
+    <header class="sticky top-0 inset-x-0 flex flex-wrap md:justify-start md:flex-nowrap z-[48] w-full bg-white border-b text-sm py-2.5 lg:ps-[260px] dark:bg-neutral-800 dark:border-neutral-700">
+        <nav class="px-4 sm:px-6 flex basis-full items-center w-full mx-auto">
+            {#        1. Inicio (Dashboard)#}
+            {#        2. Clientes#}
+            {#        3. Mascotas#}
+            {#        4. Citas#}
+            {#        5. Estancias#}
+            {#        6. Inventario#}
+            {#        7. Facturación#}
+            {#        8. Reportes#}
+            {#        9. Promociones#}
+            {#        10. Configuración#}
+            {#        11. Soporte#}
+
+            <div class="w-full flex items-center justify-end ms-auto md:justify-between gap-x-1 md:gap-x-3">
+
+                <div class="hidden md:block">
+                    <!-- Search Input -->
+                    {#                <div class="relative">#}
+                    {#                    <div class="absolute inset-y-0 start-0 flex items-center pointer-events-none z-20 ps-3.5">#}
+                    {#                        <svg class="shrink-0 size-4 text-gray-400 dark:text-white/60" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">#}
+                    {#                            <circle cx="11" cy="11" r="8" />#}
+                    {#                            <path d="m21 21-4.3-4.3" />#}
+                    {#                        </svg>#}
+                    {#                    </div>#}
+                    {#                    <input type="text" class="py-2 ps-10 pe-16 block w-full bg-white border-gray-200 rounded-lg text-sm focus:outline-none focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder:text-neutral-400 dark:focus:ring-neutral-600" placeholder="Search">#}
+                    {#                    <div class="hidden absolute inset-y-0 end-0 flex items-center pointer-events-none z-20 pe-1">#}
+                    {#                        <button type="button" class="inline-flex shrink-0 justify-center items-center size-6 rounded-full text-gray-500 hover:text-blue-600 focus:outline-none focus:text-blue-600 dark:text-neutral-500 dark:hover:text-blue-500 dark:focus:text-blue-500" aria-label="Close">#}
+                    {#                            <span class="sr-only">Close</span>#}
+                    {#                            <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">#}
+                    {#                                <circle cx="12" cy="12" r="10" />#}
+                    {#                                <path d="m15 9-6 6" />#}
+                    {#                                <path d="m9 9 6 6" />#}
+                    {#                            </svg>#}
+                    {#                        </button>#}
+                    {#                    </div>#}
+                    {#                    <div class="absolute inset-y-0 end-0 flex items-center pointer-events-none z-20 pe-3 text-gray-400">#}
+                    {#                        <svg class="shrink-0 size-3 text-gray-400 dark:text-white/60" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">#}
+                    {#                            <path d="M15 6v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3V6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3" />#}
+                    {#                        </svg>#}
+                    {#                        <span class="mx-1">#}
+                    {#                <svg class="shrink-0 size-3 text-gray-400 dark:text-white/60" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">#}
+                    {#                  <path d="M5 12h14" />#}
+                    {#                  <path d="M12 5v14" />#}
+                    {#                </svg>#}
+                    {#              </span>#}
+                    {#                        <span class="text-xs">/</span>#}
+                    {#                    </div>#}
+                    {#                </div>#}
+                    <!-- End Search Input -->
+                </div>
+
+                <div class="flex flex-row items-center justify-end gap-1">
+                    <button id="theme-toggle" class="size-[38px] relative inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-full border border-transparent text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:hover:bg-neutral-700 dark:focus:bg-neutral-700">
+                        <svg id="theme-toggle-icon" class="transition duration-300 shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="5" />
+                            <path d="M12 1v2" />
+                            <path d="M12 21v2" />
+                            <path d="M4.22 4.22l1.42 1.42" />
+                            <path d="M18.36 18.36l1.42 1.42" />
+                            <path d="M1 12h2" />
+                            <path d="M21 12h2" />
+                            <path d="M4.22 19.78l1.42-1.42" />
+                            <path d="M18.36 5.64l1.42-1.42" />
+                        </svg>
+                    </button>
+
+                    <!-- Dropdown -->
+                    <div class="hs-dropdown [--placement:bottom-right] relative inline-flex">
+                        <button id="hs-dropdown-account" type="button" class="inline-flex items-center justify-center size-[46px] text-sm font-semibold leading-none rounded-full bg-sky-100 text-sky-800" aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
+                            {{ app.user|slice(0, 1)|upper }}
+                        </button>
+
+                        <div class="hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 hidden min-w-60 bg-white shadow-md rounded-lg mt-2 dark:bg-neutral-800 dark:border dark:border-neutral-700 dark:divide-neutral-700 after:h-4 after:absolute after:-bottom-4 after:start-0 after:w-full before:h-4 before:absolute before:-top-4 before:start-0 before:w-full" role="menu" aria-orientation="vertical" aria-labelledby="hs-dropdown-account">
+                            <div class="py-3 px-5 bg-gray-100 rounded-t-lg dark:bg-neutral-700">
+                                <p class="text-sm text-gray-500 dark:text-neutral-500">{{ 'Sesión iniciada' }}</p>
+                                <p class="text-sm font-medium text-gray-800 dark:text-neutral-200">{{ app.user }}</p>
+                            </div>
+
+                            <div class="p-1.5 space-y-0.5">
+                                <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300 dark:focus:bg-neutral-700 dark:focus:text-neutral-300" href="{{ path('app_logout') }}">
+                                    <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15m-3 0-3-3m0 0 3-3m-3 3H15" />
+                                    </svg>
+                                    {{ 'Salir'|trans }}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Dropdown -->
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- ========== END HEADER ========== -->
+
+    <!-- ========== MAIN CONTENT ========== -->
+    <!-- Breadcrumb -->
+    <div class="sticky top-0 inset-x-0 z-20 bg-white border-y px-4 sm:px-6 lg:px-8 lg:hidden dark:bg-neutral-800 dark:border-neutral-700">
+        <div class="flex items-center py-2">
+            <!-- Navigation Toggle -->
+            <button type="button" class="size-8 flex justify-center items-center gap-x-2 border border-gray-200 text-gray-800 hover:text-gray-500 rounded-lg focus:outline-none focus:text-gray-500 disabled:opacity-50 disabled:pointer-events-none dark:border-neutral-700 dark:text-neutral-200 dark:hover:text-neutral-500 dark:focus:text-neutral-500" aria-haspopup="dialog" aria-expanded="false" aria-controls="hs-application-sidebar" aria-label="Toggle navigation" data-hs-overlay="#hs-application-sidebar">
+                <span class="sr-only">Toggle Navigation</span>
+                <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect width="18" height="18" x="3" y="3" rx="2" />
+                    <path d="M15 3v18" />
+                    <path d="m8 9 3 3-3 3" />
+                </svg>
+            </button>
+            <!-- End Navigation Toggle -->
+
+            <!-- Breadcrumb -->
+            <ol class="ms-3 flex items-center whitespace-nowrap">
+                <li class="flex items-center text-sm text-gray-800 dark:text-neutral-400">
+                    {{ 'Productos'|trans }}
+                </li>
+            </ol>
+            <!-- End Breadcrumb -->
+        </div>
+    </div>
+    <!-- End Breadcrumb -->
+
+    <!-- Sidebar -->
+    <div id="hs-application-sidebar" class="hs-overlay  [--auto-close:lg]
+    hs-overlay-open:translate-x-0
+    -translate-x-full transition-all duration-300 transform
+    w-[260px] h-full
+    hidden
+    fixed inset-y-0 start-0 z-[60]
+    bg-white border-e border-gray-200
+    lg:block lg:translate-x-0 lg:end-auto lg:bottom-0
+    dark:bg-neutral-800 dark:border-neutral-700" role="dialog" tabindex="-1" aria-label="Sidebar">
+        <div class="relative flex flex-col h-full max-h-full">
+            <div class="px-6 pt-4">
+                <!-- Logo -->
+                <a class="flex-none rounded-xl text-xl inline-block font-semibold text-black focus:outline-none focus:opacity-80 dark:text-white" aria-label="S I R O K O">
+                    S I R O K O
+                </a>
+                <!-- End Logo -->
+            </div>
+
+            <!-- Content -->
+            <div class="h-full overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500">
+                <nav class="hs-accordion-group p-3 w-full flex flex-col flex-wrap" data-hs-accordion-always-open>
+                    <ul class="flex flex-col space-y-1">
+
+                        <li>
+                            <a class="flex items-center gap-x-3.5 py-2 px-2.5 bg-gray-100 text-sm text-gray-800 rounded-lg hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:bg-neutral-700 dark:text-white" href="{{ path('app_main') }}">
+                                <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+
+                                </svg>
+                                {{ 'Productos'|trans }}
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <!-- End Content -->
+        </div>
+    </div>
+    <!-- End Sidebar -->
+
+    <!-- Content -->
+    <div class="w-full lg:ps-64">
+        <div class="p-4 sm:p-6 space-y-4 sm:space-y-6 h-full min-h-[100vh]">
+            {#        <!-- Grid -->#}
+            {#        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">#}
+            {#            <!-- Card -->#}
+            {#            <div class="flex flex-col bg-white border shadow-sm rounded-xl dark:bg-neutral-800 dark:border-neutral-700">#}
+            {#                <div class="p-4 md:p-5">#}
+            {#                    <div class="flex items-center gap-x-2">#}
+            {#                        <p class="text-xs uppercase tracking-wide text-gray-500 dark:text-neutral-500">#}
+            {#                            Total users#}
+            {#                        </p>#}
+            {#                        <div class="hs-tooltip">#}
+            {#                            <div class="hs-tooltip-toggle">#}
+            {#                                <svg class="shrink-0 size-4 text-gray-500 dark:text-neutral-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">#}
+            {#                                    <circle cx="12" cy="12" r="10" />#}
+            {#                                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />#}
+            {#                                    <path d="M12 17h.01" />#}
+            {#                                </svg>#}
+            {#                                <span class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-gray-900 text-xs font-medium text-white rounded shadow-sm dark:bg-neutral-700" role="tooltip">#}
+            {#                    The number of daily users#}
+            {#                  </span>#}
+            {#                            </div>#}
+            {#                        </div>#}
+            {#                    </div>#}
+
+            {#                    <div class="mt-1 flex items-center gap-x-2">#}
+            {#                        <h3 class="text-xl sm:text-2xl font-medium text-gray-800 dark:text-neutral-200">#}
+            {#                            72,540#}
+            {#                        </h3>#}
+            {#                        <span class="flex items-center gap-x-1 text-green-600">#}
+            {#                <svg class="inline-block size-4 self-center" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">#}
+            {#                  <polyline points="22 7 13.5 15.5 8.5 10.5 2 17" />#}
+            {#                  <polyline points="16 7 22 7 22 13" />#}
+            {#                </svg>#}
+            {#                <span class="inline-block text-sm">#}
+            {#                  1.7%#}
+            {#                </span>#}
+            {#              </span>#}
+            {#                    </div>#}
+            {#                </div>#}
+            {#            </div>#}
+            {#            <!-- End Card -->#}
+
+            {#            <!-- Card -->#}
+            {#            <div class="flex flex-col bg-white border shadow-sm rounded-xl dark:bg-neutral-800 dark:border-neutral-700">#}
+            {#                <div class="p-4 md:p-5">#}
+            {#                    <div class="flex items-center gap-x-2">#}
+            {#                        <p class="text-xs uppercase tracking-wide text-gray-500 dark:text-neutral-500">#}
+            {#                            Sessions#}
+            {#                        </p>#}
+            {#                    </div>#}
+
+            {#                    <div class="mt-1 flex items-center gap-x-2">#}
+            {#                        <h3 class="text-xl sm:text-2xl font-medium text-gray-800 dark:text-neutral-200">#}
+            {#                            29.4%#}
+            {#                        </h3>#}
+            {#                    </div>#}
+            {#                </div>#}
+            {#            </div>#}
+            {#            <!-- End Card -->#}
+
+            {#            <!-- Card -->#}
+            {#            <div class="flex flex-col bg-white border shadow-sm rounded-xl dark:bg-neutral-800 dark:border-neutral-700">#}
+            {#                <div class="p-4 md:p-5">#}
+            {#                    <div class="flex items-center gap-x-2">#}
+            {#                        <p class="text-xs uppercase tracking-wide text-gray-500 dark:text-neutral-500">#}
+            {#                            Avg. Click Rate#}
+            {#                        </p>#}
+            {#                    </div>#}
+
+            {#                    <div class="mt-1 flex items-center gap-x-2">#}
+            {#                        <h3 class="text-xl sm:text-2xl font-medium text-gray-800 dark:text-neutral-200">#}
+            {#                            56.8%#}
+            {#                        </h3>#}
+            {#                        <span class="flex items-center gap-x-1 text-red-600">#}
+            {#                <svg class="inline-block size-4 self-center" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">#}
+            {#                  <polyline points="22 17 13.5 8.5 8.5 13.5 2 7" />#}
+            {#                  <polyline points="16 17 22 17 22 11" />#}
+            {#                </svg>#}
+            {#                <span class="inline-block text-sm">#}
+            {#                  1.7%#}
+            {#                </span>#}
+            {#              </span>#}
+            {#                    </div>#}
+            {#                </div>#}
+            {#            </div>#}
+            {#            <!-- End Card -->#}
+
+            {#            <!-- Card -->#}
+            {#            <div class="flex flex-col bg-white border shadow-sm rounded-xl dark:bg-neutral-800 dark:border-neutral-700">#}
+            {#                <div class="p-4 md:p-5">#}
+            {#                    <div class="flex items-center gap-x-2">#}
+            {#                        <p class="text-xs uppercase tracking-wide text-gray-500 dark:text-neutral-500">#}
+            {#                            Pageviews#}
+            {#                        </p>#}
+            {#                    </div>#}
+
+            {#                    <div class="mt-1 flex items-center gap-x-2">#}
+            {#                        <h3 class="text-xl sm:text-2xl font-medium text-gray-800 dark:text-neutral-200">#}
+            {#                            92,913#}
+            {#                        </h3>#}
+            {#                    </div>#}
+            {#                </div>#}
+            {#            </div>#}
+            {#            <!-- End Card -->#}
+            {#        </div>#}
+            {#        <!-- End Grid -->#}
+
+            {#        <div class="grid lg:grid-cols-2 gap-4 sm:gap-6">#}
+            {#            <!-- Card -->#}
+            {#            <div class="p-4 md:p-5 min-h-[410px] flex flex-col bg-white border shadow-sm rounded-xl dark:bg-neutral-800 dark:border-neutral-700">#}
+            {#                <!-- Header -->#}
+            {#                <div class="flex justify-between items-center">#}
+            {#                    <div>#}
+            {#                        <h2 class="text-sm text-gray-500 dark:text-neutral-500">#}
+            {#                            Income#}
+            {#                        </h2>#}
+            {#                        <p class="text-xl sm:text-2xl font-medium text-gray-800 dark:text-neutral-200">#}
+            {#                            $126,238.49#}
+            {#                        </p>#}
+            {#                    </div>#}
+
+            {#                    <div>#}
+            {#              <span class="py-[5px] px-1.5 inline-flex items-center gap-x-1 text-xs font-medium rounded-md bg-teal-100 text-teal-800 dark:bg-teal-500/10 dark:text-teal-500">#}
+            {#                <svg class="inline-block size-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">#}
+            {#                  <path d="M12 5v14" />#}
+            {#                  <path d="m19 12-7 7-7-7" />#}
+            {#                </svg>#}
+            {#                25%#}
+            {#              </span>#}
+            {#                    </div>#}
+            {#                </div>#}
+            {#                <!-- End Header -->#}
+
+            {#                <div id="hs-multiple-bar-charts"></div>#}
+            {#            </div>#}
+            {#            <!-- End Card -->#}
+
+            {#            <!-- Card -->#}
+            {#            <div class="p-4 md:p-5 min-h-[410px] flex flex-col bg-white border shadow-sm rounded-xl dark:bg-neutral-800 dark:border-neutral-700">#}
+            {#                <!-- Header -->#}
+            {#                <div class="flex justify-between items-center">#}
+            {#                    <div>#}
+            {#                        <h2 class="text-sm text-gray-500 dark:text-neutral-500">#}
+            {#                            Visitors#}
+            {#                        </h2>#}
+            {#                        <p class="text-xl sm:text-2xl font-medium text-gray-800 dark:text-neutral-200">#}
+            {#                            80.3k#}
+            {#                        </p>#}
+            {#                    </div>#}
+
+            {#                    <div>#}
+            {#              <span class="py-[5px] px-1.5 inline-flex items-center gap-x-1 text-xs font-medium rounded-md bg-red-100 text-red-800 dark:bg-red-500/10 dark:text-red-500">#}
+            {#                <svg class="inline-block size-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">#}
+            {#                  <path d="M12 5v14" />#}
+            {#                  <path d="m19 12-7 7-7-7" />#}
+            {#                </svg>#}
+            {#                2%#}
+            {#              </span>#}
+            {#                    </div>#}
+            {#                </div>#}
+            {#                <!-- End Header -->#}
+
+            {#                <div id="hs-single-area-chart"></div>#}
+            {#            </div>#}
+            {#            <!-- End Card -->#}
+            {#        </div>#}
+
+            <!-- Card -->
+            <div class="flex flex-col">
+                {#            <div class="px-6 py-4 grid gap-3 md:flex md:justify-between md:items-center border-b border-gray-200 dark:border-neutral-700 bg-white border rounded-xl shadow-sm overflow-hidden dark:bg-neutral-800 mb-5">#}
+                {#                {% block cabecera_opciones %} {% endblock %}#}
+                {#            </div>#}
+                {% block container %}
+                    <div class="-m-1.5 overflow-x-auto">
+                        <div class="p-1.5 min-w-full inline-block align-middle">
+                            {% block content %}{% endblock %}
+                        </div>
+                    </div>
+                {% endblock %}
+            </div>
+            <!-- End Card -->
+        </div>
+    </div>
+    <!-- End Content -->
+
+    <script>
+        {#document.addEventListener('DOMContentLoaded', function() {#}
+
+        {#    document.querySelectorAll('.reset-button').forEach(function(button) {#}
+        {#        button.addEventListener('click', function() {#}
+        {#            var form = button.closest('form');#}
+        {#            var route = form.getAttribute('data-route');#}
+
+        {#            // Clear session variables via AJAX#}
+        {#            $.ajax({#}
+        {#                url: '{{ path('clear_session') }}',#}
+        {#                type: 'POST',#}
+        {#                data: { route: '{{ app.current_route }}' },#}
+        {#                success: function(response) {#}
+        {#                    if (response.success) {#}
+        {#                        form.reset();#}
+
+        {#                        // Manually clear all select elements#}
+        {#                        form.querySelectorAll('select').forEach(function(select) {#}
+        {#                            select.selectedIndex = -1;#}
+        {#                        });#}
+
+        {#                        form.submit();#}
+        {#                    } else {#}
+        {#                        alert('Failed to clear session variables');#}
+        {#                    }#}
+        {#                }#}
+        {#            });#}
+        {#        });#}
+        {#    });#}
+
+        {#    $('.select2').each(function () {#}
+        {#        var isMultiple = $(this).prop('multiple');#}
+        {#        var dropdownParent = $(this).closest('.modal');#}
+        {#        var optionsCount = $(this).find('option').length;#}
+
+        {#        $(this).select2({#}
+        {#            theme: "custom",#}
+        {#            width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',#}
+        {#            placeholder: $(this).attr('data-placeholder'),#}
+        {#            closeOnSelect: !isMultiple,#}
+        {#            language: 'es',#}
+        {#            dropdownParent: dropdownParent.length ? dropdownParent : $(document.body), // Fallback al body si no está en un modal#}
+        {#            minimumResultsForSearch: optionsCount > 5 ? 0 : Infinity#}
+        {#        });#}
+        {#    });#}
+
+        {#    document.querySelectorAll('#toast').forEach(function(toastElement) {#}
+        {#        setTimeout(function() {#}
+        {#            toastElement.classList.remove('translate-x-full', 'opacity-0');#}
+        {#            toastElement.classList.add('translate-x-0', 'opacity-100');#}
+        {#        }, 100); // Delay to ensure the transition is visible#}
+
+        {#        // Auto dismiss toasts after 3 seconds#}
+        {#        setTimeout(function() {#}
+        {#            toastElement.classList.add('hs-removing');#}
+        {#            setTimeout(function() {#}
+        {#                toastElement.remove();#}
+        {#            }, 300); // Match the transition duration#}
+        {#        }, 3000);#}
+        {#    });#}
+        {#});#}
+
+        {#function showToast(label, icono, texto) {#}
+        {#    // Crear el contenedor del toast#}
+        {#    var toast = document.createElement('div');#}
+        {#    toast.className = `absolute top-2 right-2 translate-x-full opacity-0 transition-transform duration-300 max-w-xs bg-${label}-100 border border-${label}-200 text-sm text-${label}-800 rounded-lg`;#}
+        {#    toast.setAttribute('role', 'alert');#}
+        {#    toast.setAttribute('tabindex', '-1');#}
+        {#    toast.setAttribute('aria-labelledby', `hs-toast-soft-color-${label}-label`);#}
+
+        {#    // Crear el contenido del toast#}
+        {#    var toastContent = document.createElement('div');#}
+        {#    toastContent.className = 'flex p-4 items-center';#}
+        {#    toastContent.id = `hs-toast-soft-color-${label}-label`;#}
+
+        {#    // Crear el icono#}
+        {#    var icon = document.createElement('span');#}
+        {#    icon.className = `${icono} me-2`;#}
+
+        {#    // Crear el texto#}
+        {#    var text = document.createElement('span');#}
+        {#    text.innerHTML = texto;#}
+
+        {#    // Añadir el icono y el texto al contenido del toast#}
+        {#    toastContent.appendChild(icon);#}
+        {#    toastContent.appendChild(text);#}
+
+        {#    // Añadir el contenido al contenedor del toast#}
+        {#    toast.appendChild(toastContent);#}
+
+        {#    // Añadir el toast al body#}
+        {#    document.body.appendChild(toast);#}
+
+        {#    // Mostrar el toast con una pequeña demora para que la transición sea visible#}
+        {#    setTimeout(function() {#}
+        {#        toast.classList.remove('translate-x-full', 'opacity-0');#}
+        {#        toast.classList.add('translate-x-0', 'opacity-100');#}
+        {#    }, 100);#}
+
+        {#    // Ocultar y eliminar el toast después de 3 segundos#}
+        {#    setTimeout(function() {#}
+        {#        toast.classList.add('hs-removing');#}
+        {#        setTimeout(function() {#}
+        {#            toast.remove();#}
+        {#        }, 300); // Duración de la transición#}
+        {#    }, 3000);#}
+        {#}#}
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeToggleButton = document.getElementById('theme-toggle');
+            const themeToggleIcon = document.getElementById('theme-toggle-icon');
+            const html = document.querySelector('html');
+
+            function setTheme(theme) {
+                if (theme === 'dark') {
+                    html.classList.add('dark');
+                    themeToggleIcon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />';
+                    localStorage.setItem('hs_theme', 'dark');
+                } else {
+                    html.classList.remove('dark');
+                    themeToggleIcon.innerHTML = '<circle cx="12" cy="12" r="5" /><path d="M12 1v2" /><path d="M12 21v2" /><path d="M4.22 4.22l1.42 1.42" /><path d="M18.36 18.36l1.42 1.42" /><path d="M1 12h2" /><path d="M21 12h2" /><path d="M4.22 19.78l1.42-1.42" /><path d="M18.36 5.64l1.42-1.42" />';
+                    localStorage.setItem('hs_theme', 'light');
+                }
+            }
+
+            function toggleTheme() {
+                if (html.classList.contains('dark')) {
+                    setTheme('light');
+                } else {
+                    setTheme('dark');
+                }
+            }
+
+            themeToggleButton.addEventListener('click', toggleTheme);
+
+            const savedTheme = localStorage.getItem('hs_theme') || 'light';
+            setTheme(savedTheme);
+        });
+    </script>
+
+    </body>
+{% endblock %}

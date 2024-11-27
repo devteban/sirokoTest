@@ -1,0 +1,89 @@
+{% extends 'publicBase.html.twig' %}
+
+{% block title %}{{ 'S I R O K O'|trans }}{% endblock %}
+
+{% block body %}
+    {{ block('navbar') }}
+
+    <div class="w-full h-screen bg-gray-100 dark:bg-neutral-900">
+        <div class="relative max-w-[85rem] w-full mx-auto px-4 sm:px-6 lg:px-8 py-2">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 my-5">
+                {% for product in products %}
+                    <div class="flex flex-col bg-white border shadow-sm rounded-xl dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70">
+                        <div class="w-full h-48 flex items-center justify-center bg-gray-200 dark:bg-neutral-800 rounded-t-xl">
+                            {% if product.image %}
+                                <img class="w-full h-full object-cover rounded-t-xl"
+                                     src="{{ asset('uploads/images/' ~ product.image) }}"
+                                     alt="{{ product.name }}">
+                            {% else %}
+                                <div class="w-full h-full flex items-center justify-center bg-black text-white dark:bg-white dark:text-black rounded-t-xl">
+                                    S I R O K O
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="p-4 md:p-5 flex flex-col flex-grow">
+                            <div class="flex-grow">
+                                <h3 class="text-lg font-bold text-gray-800 dark:text-white">
+                                    {{ product.name }}
+                                </h3>
+                                {% if product.shortDescription %}
+                                    <p class="mt-1 text-gray-500 dark:text-neutral-400">
+                                        {{ product.shortDescription }}
+                                    </p>
+                                {% endif %}
+                            </div>
+                            <div class="mt-4 flex justify-between items-center">
+                                <span class="text-xl font-semibold text-gray-800 dark:text-white">{{ product.price }} €</span>
+                                <button type="button"
+                                        class="add-to-cart py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-teal-100 text-teal-800 hover:bg-teal-200 focus:outline-none focus:bg-teal-200 disabled:opacity-50 disabled:pointer-events-none dark:text-teal-500 dark:bg-teal-800/30 dark:hover:bg-teal-800/20 dark:focus:bg-teal-800/20"
+                                        data-id="{{ product.id }}">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2"
+                                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                              d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+                                    </svg>
+                                    {{ 'Añadir al carrito'|trans }}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const addToCartButtons = document.querySelectorAll('.add-to-cart');
+
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const productId = this.getAttribute('data-id');
+                    const quantity = 1; // Default quantity
+
+                    fetch('{{ path('api_cart_add') }}', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            product_id: productId,
+                            quantity: quantity
+                        })
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.error) {
+                                alert(data.error);
+                            } else {
+                                alert('Product added to cart');
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                        });
+                });
+            });
+        });
+    </script>
+{% endblock %}

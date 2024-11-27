@@ -1,0 +1,58 @@
+{% extends 'backBase.html.twig' %}
+
+{% block title %}Product index{% endblock %}
+
+{% block container %}
+    {{ parent() }}
+
+    <div class="flex items-center justify-between">
+        <h1 class="rounded-xl text-xl inline-block font-semibold text-black focus:outline-none focus:opacity-80 dark:text-white">{{ 'Listado de productos'|trans }}</h1>
+
+        <div>
+            <a href="{{ path('app_product_new') }}" class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-teal-100 text-teal-800 hover:bg-teal-200 focus:outline-none focus:bg-teal-200 disabled:opacity-50 disabled:pointer-events-none dark:text-teal-500 dark:bg-teal-800/30 dark:hover:bg-teal-800/20 dark:focus:bg-teal-800/20">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 16.875h3.375m0 0h3.375m-3.375 0V13.5m0 3.375v3.375M6 10.5h2.25a2.25 2.25 0 0 0 2.25-2.25V6a2.25 2.25 0 0 0-2.25-2.25H6A2.25 2.25 0 0 0 3.75 6v2.25A2.25 2.25 0 0 0 6 10.5Zm0 9.75h2.25A2.25 2.25 0 0 0 10.5 18v-2.25a2.25 2.25 0 0 0-2.25-2.25H6a2.25 2.25 0 0 0-2.25 2.25V18A2.25 2.25 0 0 0 6 20.25Zm9.75-9.75H18a2.25 2.25 0 0 0 2.25-2.25V6A2.25 2.25 0 0 0 18 3.75h-2.25A2.25 2.25 0 0 0 13.5 6v2.25a2.25 2.25 0 0 0 2.25 2.25Z" />
+                </svg>
+
+                {{ 'Nuevo producto'|trans }}
+            </a>
+        </div>
+    </div>
+
+    <div class="flex flex-col mt-3">
+        <div class="-m-1.5 overflow-x-auto">
+            <div class="p-1.5 min-w-full inline-block align-middle">
+                <div class="overflow-hidden">
+                    <table class="min-w-full divide-y divide-gray-200 dark:divide-neutral-700">
+                        <thead>
+                        <tr>
+                            <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">{{ 'Imagen'|trans }}</th>
+                            <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">{{ 'Nombre'|trans }}</th>
+                            <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">{{ 'Precio'|trans }}</th>
+                            <th scope="col" class="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">{{ 'Acción'|trans }}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for product in products %}
+                            <tr class="odd:bg-white even:bg-gray-100 dark:odd:bg-neutral-900 dark:even:bg-neutral-800">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-neutral-200">
+                                    {% if product.image %}
+                                        <img src="{{ asset('uploads/images/' ~ product.image) }}" alt="{{ product.name }}" class="w-16 h-16 object-cover rounded">
+                                    {% else %}
+                                        <span class="text-gray-500 dark:text-neutral-500">{{ 'Sin imagen'|trans }}</span>
+                                    {% endif %}
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-neutral-200">{{ product.name }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">{{ product.price }} €</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
+                                    {{ include('product/_delete_form.html.twig') }}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

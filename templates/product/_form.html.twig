@@ -1,0 +1,22 @@
+<!-- templates/product/_form.html.twig -->
+{% form_theme form 'form/fields.html.twig' %}
+{{ form_start(form) }}
+<div class="flex items-start gap-4">
+    <div class="flex-1">
+        {{ form_row(form.name) }}
+    </div>
+    <div class="flex-1">
+        {{ form_row(form.price) }}
+    </div>
+    <div class="flex-1">
+        {{ form_row(form.image) }}
+        {% if product.image %}
+            <img src="{{ asset('uploads/images/' ~ product.imagePath) }}" alt="{{ product.name }}" class="mt-2">
+        {% endif %}
+    </div>
+</div>
+<div class="mt-4">
+    {{ form_row(form.shortDescription) }}
+</div>
+<button class="py-3 px-4 mt-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-teal-100 text-teal-800 hover:bg-teal-200 focus:outline-none focus:bg-teal-200 disabled:opacity-50 disabled:pointer-events-none dark:text-teal-500 dark:bg-teal-800/30 dark:hover:bg-teal-800/20 dark:focus:bg-teal-800/20">{{ button_label|default('Guardar') }}</button>
+{{ form_end(form) }}
