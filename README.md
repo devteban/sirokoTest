@@ -57,13 +57,6 @@ Para ejecutar el proyecto localmente, sigue estos pasos:
 
 ---
 
-## 🌟 Notas
-
-- El enfoque principal de este proyecto ha sido garantizar que las funcionalidades esenciales sean **intuitivas** y **fáciles de usar**.
-- Se ha implementado un diseño limpio y funcional para mejorar la experiencia de usuario durante las pruebas.
-
----
-
 ## 📋 Notas Adicionales
 
 - **Encapsulación de funcionalidades del carrito**:  
