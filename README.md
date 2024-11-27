@@ -58,14 +58,14 @@ Para ejecutar el proyecto localmente, sigue estos pasos:
 
 ## 📋 Notas Adicionales
 
+- **Docker🐳**:  
+  Este proyecto utiliza una receta personalizada de Docker diseñada específicamente para las necesidades de un proyecto Symfony. La receta ha sido creada por mí, teniendo en cuenta las configuraciones óptimas para el desarrollo y la ejecución de la aplicación.
+
 - **Encapsulación de funcionalidades del carrito**:  
   Todas las funcionalidades relacionadas con el carrito de compras están completamente encapsuladas dentro del controlador `ApiController`. Esto garantiza una separación clara de responsabilidades y facilita su mantenimiento y escalabilidad.
 
 - **Uso de Tailwind CSS**:  
   Para proporcionar una experiencia visual más agradable, he utilizado la librería de componentes de **Tailwind CSS**. Aunque el diseño no será evaluado, creo que una interfaz bien estructurada mejora la presentación y la usabilidad del proyecto.
-
-- **Docker🐳**:  
-  Este proyecto utiliza una receta personalizada de Docker diseñada específicamente para las necesidades de un proyecto Symfony. La receta ha sido creada por mí, teniendo en cuenta las configuraciones óptimas para el desarrollo y la ejecución de la aplicación.
 
 ---
 
